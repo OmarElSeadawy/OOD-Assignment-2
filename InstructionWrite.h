@@ -1,0 +1,34 @@
+#ifndef INSTRUCTIONWRITE_H
+#define INSTRUCTIONWRITE_H
+
+#include "Instruction.h"
+#include "Parameters.h"
+#include <iostream>
+
+class InstructionWrite : public Instruction
+{
+    public:
+    ~InstructionWrite(){
+        std::cout << "Write Instruction Destructor\n";
+    };
+    InstructionWrite(parameters* params):p(params){
+        std::cout << "Write Instruction Constructor\n";
+    };
+    parameters *p;
+
+    void Execute(int &PC)
+    {
+        std::cout << "Executing Write COMMAND\n";
+		if (p->isp1addr)
+			std::cout <<  *p->p1.param1addr << std::endl;
+		else
+			std::cout <<  p->p1.param1val << std::endl;
+
+
+		PC++;
+    }
+    
+};
+
+
+#endif
