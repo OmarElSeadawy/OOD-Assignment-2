@@ -1,0 +1,8 @@
+ADD 3 4 x1
+MUL x1 x1 x2
+JMP 6
+ADD x1 x1 x1
+MUL x1 x1 x1
+WRITE x1
+WRITE x2
+HALT

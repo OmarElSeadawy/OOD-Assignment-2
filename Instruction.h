@@ -4,8 +4,10 @@
 
 class Instruction
 {
-    public:
+    protected:
     parameters *p;
+    
+    public:
     Instruction(){}
     virtual void Execute(int &PC) = 0;   
     Instruction(parameters* params):p(params){}

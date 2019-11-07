@@ -1,0 +1,5 @@
+READ x1
+ADD x1 x1 x2
+WRITE x1
+WRITE x2
+HALT

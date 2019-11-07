@@ -1,0 +1,9 @@
+ADD 1 3 x1
+ADD x1 x1 x2
+MUL x2 5 x3
+ASS x3 x5
+WRITE x1
+WRITE x2
+WRITE x3
+WRITE x5
+HALT

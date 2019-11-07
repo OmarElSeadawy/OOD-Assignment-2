@@ -9,7 +9,7 @@
 class Processor{
 
     private:
-    
+
     Instruction** InstructionMemory;
     int DataMemory[MEMORYSIZE] = {0};
     std::string programfilename;
@@ -54,6 +54,10 @@ class Processor{
 
                 case -3: //Incorrect Instruction
                 std::cerr << "Incorrect Instruction Exception Caught\n";
+                break;
+                
+                case -4:
+                std::cerr << "Data Memory out of Bound\n";
                 break;
 
                 case -9: //System Halt Command

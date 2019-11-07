@@ -26,9 +26,11 @@ bool is_digits(const std::string &str)
 
 class InstructionFactory
 {
-    public:
+    protected:
+    
     std::ifstream instfile;
 
+    public:
     InstructionFactory(){};
 
     ~InstructionFactory() { instfile.close(); };
@@ -68,7 +70,10 @@ class InstructionFactory
                         if(is_digits(tokens[1].substr(tokens[1].find('x')+1,-1)))
                         {
                             p.isp1addr = true;       //IT IS AN ADDRESS
-                            p.p1.param1addr = &DataMemory[std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            if(std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1)) < 1024)
+                                  p.p1.param1addr = &DataMemory[std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            else
+                                throw -4;
                         }
                         else
                             throw -2; // Incorrect Parameter Value
@@ -111,7 +116,11 @@ class InstructionFactory
                         if(is_digits(tokens[1].substr(tokens[1].find('x')+1,-1)))
                         {
                             p.isp1addr = true;       //IT IS AN ADDRESS
-                            p.p1.param1addr = &DataMemory[std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            if(std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1)) < 1024)
+                                p.p1.param1addr = &DataMemory[std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            else
+                                    throw -4;
+                            
                         }
                         else
                             throw -2; // Incorrect Parameter Value
@@ -130,7 +139,10 @@ class InstructionFactory
                         if(is_digits(tokens[2].substr(tokens[2].find('x')+1,-1)))
                             {
                                 p.isp2addr = true;       //IT IS AN ADDRESS
-                                p.p2.param2addr = &DataMemory[std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                                if(std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1)) < 1024)
+                                   p.p2.param2addr = &DataMemory[std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                                else
+                                    throw -4;
                             }
                         else
                             throw -2; //Incorrect parameter value 
@@ -184,7 +196,10 @@ class InstructionFactory
                         if(is_digits(tokens[1].substr(tokens[1].find('x')+1,-1)))
                         {
                             p.isp1addr = true;       //IT IS AN ADDRESS
-                            p.p1.param1addr = &DataMemory[std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            if(std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1)) < 1024)
+                                p.p1.param1addr = &DataMemory[std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            else
+                                throw -4;
                         }
                         else
                             throw -2; // Incorrect Parameter Value
@@ -203,7 +218,10 @@ class InstructionFactory
                         if(is_digits(tokens[2].substr(tokens[2].find('x')+1,-1)))
                             {
                                 p.isp2addr = true;       //IT IS AN ADDRESS
-                                p.p2.param2addr = &DataMemory[std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                                if(std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1)) < 1024)
+                                    p.p2.param2addr = &DataMemory[std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                                else
+                                    throw -4;
                             }
                         else
                             throw -2; //Incorrect parameter value 
@@ -222,7 +240,10 @@ class InstructionFactory
                         if(is_digits(tokens[3].substr(tokens[3].find('x')+1,-1)))
                         {
                             p.isp3addr = true;       //IT IS AN ADDRESS
-                            p.p3.param3addr = &DataMemory[std::stoi(tokens[3].substr(tokens[3].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            if(std::stoi(tokens[3].substr(tokens[3].find('x')+1,-1)) < 1024)
+                                p.p3.param3addr = &DataMemory[std::stoi(tokens[3].substr(tokens[3].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            else
+                                throw -4;
                         }
                         else
                             throw -2;   //Incorrect Parameter Value
