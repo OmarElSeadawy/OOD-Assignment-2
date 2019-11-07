@@ -11,10 +11,9 @@ class InstructionJmpif : public Instruction
     ~InstructionJmpif(){
         std::cout << "Jmpif Instruction Destructor\n";
     };
-    InstructionJmpif(parameters* params):p(params){
+    InstructionJmpif(parameters* params):Instruction(params){
         std::cout << "Jmpif Instruction Constructor\n";
     };
-    parameters *p;
 
     void Execute(int &PC)
     {

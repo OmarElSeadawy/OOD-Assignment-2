@@ -11,10 +11,9 @@ class InstructionWrite : public Instruction
     ~InstructionWrite(){
         std::cout << "Write Instruction Destructor\n";
     };
-    InstructionWrite(parameters* params):p(params){
+    InstructionWrite(parameters* params):Instruction(params){
         std::cout << "Write Instruction Constructor\n";
     };
-    parameters *p;
 
     void Execute(int &PC)
     {

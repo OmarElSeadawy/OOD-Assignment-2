@@ -11,10 +11,9 @@ class InstructionLE : public Instruction
     ~InstructionLE(){
         std::cout << "LE INSTRUCTION Destructor\n";
     };
-    InstructionLE(parameters* params):p(params){
+    InstructionLE(parameters* params):Instruction(params){
         std::cout << "LE Instruction Constructor\n";
     };
-    parameters *p;
 
     void Execute(int &PC)
     {

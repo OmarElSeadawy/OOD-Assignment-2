@@ -11,10 +11,9 @@ class InstructionNeg : public Instruction
     ~InstructionNeg(){
         std::cout << "Neg Instruction Destructor\n";
     };
-    InstructionNeg(parameters* params):p(params){
+    InstructionNeg(parameters* params):Instruction(params){
         std::cout << "Neg Instruction Constructor\n";
     };
-    parameters *p;
 
     void Execute(int &PC)
     {

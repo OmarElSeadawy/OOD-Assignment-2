@@ -11,10 +11,9 @@ class InstructionAssign : public Instruction
     ~InstructionAssign(){
         std::cout << "Assign Instruction Destructor\n";
     };
-    InstructionAssign(parameters* params):p(params){
+    InstructionAssign(parameters* params):Instruction(params){
         std::cout << "Assign Instruction Constructor\n";
     };
-    parameters *p;
 
     void Execute(int &PC)
     {

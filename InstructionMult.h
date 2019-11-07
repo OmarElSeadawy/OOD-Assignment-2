@@ -11,10 +11,9 @@ class InstructionMult : public Instruction
     ~InstructionMult(){
         std::cout << "MULT INSTRUCTION Destructor\n";
     };
-    InstructionMult(parameters* params):p(params){
+    InstructionMult(parameters* params):Instruction(params){
         std::cout << "MULT Instruction Constructor\n";
     };
-    parameters *p;
 
     void Execute(int &PC)
     {

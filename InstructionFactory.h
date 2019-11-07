@@ -29,13 +29,13 @@ class InstructionFactory
     public:
     std::ifstream instfile;
 
-    InstructionFactory(std::string file):instfile(file)
-    { std::cout << "Constructor Called\n"; };
+    InstructionFactory(){};
 
     ~InstructionFactory() { instfile.close(); };
 
-    int ParseFile(int DataMemory[], Instruction** InstructionMemory)
+    int inline ParseFile(std::string filename, int DataMemory[], Instruction** InstructionMemory)
     {
+        instfile.open(filename);
         std::string line;
         int i = 0;
         std::string word;

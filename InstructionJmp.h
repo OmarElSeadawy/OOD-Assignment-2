@@ -11,10 +11,9 @@ class InstructionJmp : public Instruction
     ~InstructionJmp(){
         std::cout << "Jmp Instruction Destructor\n";
     };
-    InstructionJmp(parameters* params):p(params){
+    InstructionJmp(parameters* params):Instruction(params){
         std::cout << "Jmp Instruction Constructor\n";
     };
-    parameters *p;
 
     void Execute(int &PC)
     {

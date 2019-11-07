@@ -11,10 +11,9 @@ class InstructionRead : public Instruction
     ~InstructionRead(){
         std::cout << "Read Instruction Destructor\n";
     };
-    InstructionRead(parameters* params):p(params){
+    InstructionRead(parameters* params):Instruction(params){
         std::cout << "Read Instruction Constructor\n";
     };
-    parameters *p;
 
     void Execute(int &PC)
     {

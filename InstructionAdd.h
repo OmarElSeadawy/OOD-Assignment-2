@@ -10,10 +10,9 @@ class InstructionAdd : public Instruction
     ~InstructionAdd(){
         std::cout << "Add Instruction Destructor\n";
     };
-    InstructionAdd(parameters* params):p(params){
+    InstructionAdd(parameters* params):Instruction(params){
         std::cout << "Add Instruction Constructor\n";
     };
-    parameters *p;
 
     void Execute(int &PC)
     {
