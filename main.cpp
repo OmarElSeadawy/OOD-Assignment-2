@@ -3,7 +3,9 @@
 int main()
 {
     Processor P;
-    
+    // P.Execute("program.txt");
+
+
     std::cout << "Test 1:\n";          /*Test 1 : Testing ADD/MUL/NEG/ASS/WRITE/HALT */
     // P.Execute("test1.txt");
     std::cout << "-----------------------------------------------------------\n";
@@ -14,7 +16,7 @@ int main()
     // P.Execute("test3.txt");
     std::cout << "-----------------------------------------------------------\n";
     std::cout << "Test 4:\n";          /*Test 4 : Testing JMP */
-    // P.Execute("test4.txt");
+    P.Execute("test4.txt");
     std::cout << "-----------------------------------------------------------\n";
     std::cout << "Test 5:\n";          /*Test 5 : Testing JMP0 */
     // P.Execute("test5.txt");
@@ -26,7 +28,7 @@ int main()
     // P.Execute("test7.txt");
     std::cout << "-----------------------------------------------------------\n";
     std::cout << "Test 8:\n";          /*Test 8 : Testing Out of Bound Exception */
-    P.Execute("test8.txt");
+    // P.Execute("test8.txt");
     
     
 

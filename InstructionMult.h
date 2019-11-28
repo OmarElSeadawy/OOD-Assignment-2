@@ -29,6 +29,7 @@ class InstructionMult : public Instruction
 		else
 			operand2 = p->p2.param2val;
 
+
 		*p->p3.param3addr = operand1 * operand2;
 		PC++;
     }

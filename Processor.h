@@ -60,6 +60,10 @@ class Processor{
                 std::cerr << "Data Memory out of Bound\n";
                 break;
 
+                case -7:
+                std::cerr << "Invalid Read Value\n";
+                break;
+
                 case -9: //System Halt Command
                 std::cerr << "SYSTEM HALT COMMAND - Processor Shutdown\n";
                 break;

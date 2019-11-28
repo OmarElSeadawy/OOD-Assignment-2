@@ -5,8 +5,8 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include <sstream>
 #include <algorithm>
+#include <sstream>
 #include "Instruction.h"
 #include "InstructionMult.h"
 #include "InstructionAdd.h"
@@ -52,7 +52,7 @@ class InstructionFactory
             {
                 tokens.push_back(word);
             }
-            
+
             if(tokens.size() == 1)  {
                 //HALT SYSTEM
                 if(tokens[0] == "HALT")        /*STOP SYSTEM*/
@@ -70,8 +70,9 @@ class InstructionFactory
                         if(is_digits(tokens[1].substr(tokens[1].find('x')+1,-1)))
                         {
                             p.isp1addr = true;       //IT IS AN ADDRESS
-                            if(std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1)) < 1024)
-                                  p.p1.param1addr = &DataMemory[std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            int q = std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1)); 
+                            if((q < 1024) && (q >= 0))
+                                  p.p1.param1addr = &DataMemory[q];  //REFERENCE TO ADDRESS IN MEMORY
                             else
                                 throw -4;
                         }
@@ -79,6 +80,11 @@ class InstructionFactory
                             throw -2; // Incorrect Parameter Value
                     }
                 else if(is_digits(tokens[1]))
+                    {
+                        p.isp1addr = false;
+                        p.p1.param1val = std::stoi(tokens[1]);
+                    }
+                else if((tokens[1].at(0) == '-') && (is_digits(tokens[1].substr(1,-1))))
                     {
                         p.isp1addr = false;
                         p.p1.param1val = std::stoi(tokens[1]);
@@ -116,8 +122,9 @@ class InstructionFactory
                         if(is_digits(tokens[1].substr(tokens[1].find('x')+1,-1)))
                         {
                             p.isp1addr = true;       //IT IS AN ADDRESS
-                            if(std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1)) < 1024)
-                                p.p1.param1addr = &DataMemory[std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            int q = std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1)); 
+                            if((q < 1024) && (q >= 0))
+                                p.p1.param1addr = &DataMemory[q];  //REFERENCE TO ADDRESS IN MEMORY
                             else
                                     throw -4;
                             
@@ -126,6 +133,11 @@ class InstructionFactory
                             throw -2; // Incorrect Parameter Value
                     }
                 else if(is_digits(tokens[1]))
+                    {
+                        p.isp1addr = false;
+                        p.p1.param1val = std::stoi(tokens[1]);
+                    }
+                else if((tokens[1].at(0) == '-') && (is_digits(tokens[1].substr(1,-1))))
                     {
                         p.isp1addr = false;
                         p.p1.param1val = std::stoi(tokens[1]);
@@ -139,8 +151,9 @@ class InstructionFactory
                         if(is_digits(tokens[2].substr(tokens[2].find('x')+1,-1)))
                             {
                                 p.isp2addr = true;       //IT IS AN ADDRESS
-                                if(std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1)) < 1024)
-                                   p.p2.param2addr = &DataMemory[std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                                int q = std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1)); 
+                                if((q < 1024) && (q >= 0))
+                                   p.p2.param2addr = &DataMemory[q];  //REFERENCE TO ADDRESS IN MEMORY
                                 else
                                     throw -4;
                             }
@@ -148,6 +161,11 @@ class InstructionFactory
                             throw -2; //Incorrect parameter value 
                     }
                 else if(is_digits(tokens[2]))
+                    {
+                        p.isp2addr = false;
+                        p.p2.param2val = std::stoi(tokens[2]);
+                    }
+                else if((tokens[2].at(0) == '-') && (is_digits(tokens[2].substr(1,-1))))
                     {
                         p.isp2addr = false;
                         p.p2.param2val = std::stoi(tokens[2]);
@@ -196,8 +214,9 @@ class InstructionFactory
                         if(is_digits(tokens[1].substr(tokens[1].find('x')+1,-1)))
                         {
                             p.isp1addr = true;       //IT IS AN ADDRESS
-                            if(std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1)) < 1024)
-                                p.p1.param1addr = &DataMemory[std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            int q = std::stoi(tokens[1].substr(tokens[1].find('x')+1,-1)); 
+                            if((q < 1024) && (q >= 0))
+                                p.p1.param1addr = &DataMemory[q];  //REFERENCE TO ADDRESS IN MEMORY
                             else
                                 throw -4;
                         }
@@ -205,6 +224,11 @@ class InstructionFactory
                             throw -2; // Incorrect Parameter Value
                     }
                 else if(is_digits(tokens[1]))
+                    {
+                        p.isp1addr = false;
+                        p.p1.param1val = std::stoi(tokens[1]);
+                    }
+                else if((tokens[1].at(0) == '-') && (is_digits(tokens[1].substr(1,-1))))
                     {
                         p.isp1addr = false;
                         p.p1.param1val = std::stoi(tokens[1]);
@@ -218,8 +242,9 @@ class InstructionFactory
                         if(is_digits(tokens[2].substr(tokens[2].find('x')+1,-1)))
                             {
                                 p.isp2addr = true;       //IT IS AN ADDRESS
-                                if(std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1)) < 1024)
-                                    p.p2.param2addr = &DataMemory[std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                                int q = std::stoi(tokens[2].substr(tokens[2].find('x')+1,-1)); 
+                                if((q < 1024) && (q >= 0))
+                                    p.p2.param2addr = &DataMemory[q];  //REFERENCE TO ADDRESS IN MEMORY
                                 else
                                     throw -4;
                             }
@@ -227,6 +252,11 @@ class InstructionFactory
                             throw -2; //Incorrect parameter value 
                     }
                 else if(is_digits(tokens[2]))
+                    {
+                        p.isp2addr = false;
+                        p.p2.param2val = std::stoi(tokens[2]);
+                    }
+                else if((tokens[2].at(0) == '-') && (is_digits(tokens[2].substr(1,-1))))
                     {
                         p.isp2addr = false;
                         p.p2.param2val = std::stoi(tokens[2]);
@@ -240,8 +270,9 @@ class InstructionFactory
                         if(is_digits(tokens[3].substr(tokens[3].find('x')+1,-1)))
                         {
                             p.isp3addr = true;       //IT IS AN ADDRESS
-                            if(std::stoi(tokens[3].substr(tokens[3].find('x')+1,-1)) < 1024)
-                                p.p3.param3addr = &DataMemory[std::stoi(tokens[3].substr(tokens[3].find('x')+1,-1))];  //REFERENCE TO ADDRESS IN MEMORY
+                            int q = std::stoi(tokens[3].substr(tokens[3].find('x')+1,-1)); 
+                            if ((q < 1024) && (q >= 0))
+                                p.p3.param3addr = &DataMemory[q];  //REFERENCE TO ADDRESS IN MEMORY
                             else
                                 throw -4;
                         }
@@ -250,6 +281,7 @@ class InstructionFactory
                     }
                 else 
                     throw -2; // Incorrect parameter value
+
 
 
                 if(tokens[0] == "ADD") {
