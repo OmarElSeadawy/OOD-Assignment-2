@@ -3,39 +3,47 @@
 #include "Instruction.h"
 #include "InstructionFactory.h"
 #include <string>
+#include <vector>
+#include <thread>
 #define MEMORYSIZE 1024
-
 
 class Processor{
 
     private:
 
-    Instruction** InstructionMemory;
+    Instruction*** InstructionMemory;
     int DataMemory[MEMORYSIZE] = {0};
-    std::string programfilename;
-    InstructionFactory IF;
-    int ProgramCounter;
-    int IMemorySize;
-    
+    int FileNum;
+    std::vector<std::thread> workers;
+
     public:
     
-    Processor():InstructionMemory(new Instruction*),ProgramCounter(0){ }
+    Processor(int Fn):FileNum(Fn){ 
+        for(int ii = 0; ii < FileNum; ii++)
+            InstructionMemory = new Instruction**;
+            
+    }
     ~Processor()
     {
-        for(int i = 0; i < IMemorySize; i++)
-            delete[] InstructionMemory[i];
+        // for(int i = 0; i < IMemorySize[i]; i++)
+        //     delete[] InstructionMemory[i];
         delete [] InstructionMemory;
     }
 
-    void Execute(std::string fname)
+    void Execute(std::string fname, int idx)
     {
-        programfilename = fname;
+        InstructionFactory IF;
+        int IMemorySize;
+        int ProgramCounter;
+
+
         try
         {
-            IMemorySize = IF.ParseFile(programfilename, DataMemory,InstructionMemory);       //Sending Array by Reference
-            ProgramCounter = 0;                                             // Program Counter
+               IMemorySize = IF.ParseFile(fname+std::to_string(idx+1), DataMemory,InstructionMemory[idx]);       //Sending Array by Reference
+               ProgramCounter = 0;                         //Program Counter
+                
             while (ProgramCounter < IMemorySize) {
-                (*InstructionMemory[ProgramCounter]).Execute(ProgramCounter);   // Execution of Functions
+                (*InstructionMemory[ProgramCounter])[idx].Execute(ProgramCounter);   // Execution of Functions
                 if((ProgramCounter >= IMemorySize)||(ProgramCounter<0))          /* This is used incase Jump Function Bypassed the limit of instruction memory*/
                     throw -1;
                 }
@@ -72,11 +80,21 @@ class Processor{
                 std::cerr << "Unhandled Exception Caught\n";
             }
         };
-        
 
+        
+    }
+    
+    void Run(std::string fname)
+    {
+        for(int i=0;i<FileNum;i++)
+            {
+                std::thread t(&Processor::Execute,fname,i);
+                workers.push_back(t);
+            }
+
+        for(std::thread& t: workers)
+            t.join();
     }
 };
-
-
 
 #endif
