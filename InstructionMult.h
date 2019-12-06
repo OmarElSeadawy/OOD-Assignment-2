@@ -9,15 +9,18 @@ class InstructionMult : public Instruction
 {
     public:
     ~InstructionMult(){
-        std::cout << "MULT INSTRUCTION Destructor\n";
+        // std::cout << "MULT INSTRUCTION Destructor\n";
     };
     InstructionMult(parameters* params):Instruction(params){
-        std::cout << "MULT Instruction Constructor\n";
+        // std::cout << "MULT Instruction Constructor\n";
     };
 
     void Execute(int &PC)
     {
-        std::cout << "Executing Mult COMMAND\n";
+        
+        int t = LockMutexes(p);
+        // std::cout << "Locked Mult Instruction\n";
+        // std::cout << "Executing Mult COMMAND\n";
 		int operand1, operand2;
 		if (p->isp1addr)
 			operand1 = *p->p1.param1addr;
@@ -32,6 +35,9 @@ class InstructionMult : public Instruction
 
 		*p->p3.param3addr = operand1 * operand2;
 		PC++;
+
+        UnlockMutexes(p,t);
+        // std::cout << "Unlocked Mult Instruction\n";
     }
     
 };

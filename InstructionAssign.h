@@ -9,15 +9,16 @@ class InstructionAssign : public Instruction
 {
     public:
     ~InstructionAssign(){
-        std::cout << "Assign Instruction Destructor\n";
+        // std::cout << "Assign Instruction Destructor\n";
     };
     InstructionAssign(parameters* params):Instruction(params){
-        std::cout << "Assign Instruction Constructor\n";
+        // std::cout << "Assign Instruction Constructor\n";
     };
 
     void Execute(int &PC)
     {
-        std::cout << "Executing Assign COMMAND\n";
+        int t = LockMutexes2(p);
+        // std::cout << "Executing Assign COMMAND\n";
 		int operand1;
 		if (p->isp1addr)
 			operand1 = *p->p1.param1addr;
@@ -26,6 +27,8 @@ class InstructionAssign : public Instruction
 
 		*p->p2.param2addr = operand1;
 		PC++;
+
+        UnlockMutexes(p,t);
     }
     
 };

@@ -1,4 +1,5 @@
 TO COMPILE & RUN:
-g++ main.cpp -o main && main
+g++ main.cpp -pthread -std=c++17 -g -o main && ./main
 
-main.cpp Has 8 test cases, uncomment each one and run the program 
+Path for GDB/Valgrind Purposes
+file ~/Desktop/Fall\ 2019/Object\ Oriented\ Dev/Assignment\ 3/main

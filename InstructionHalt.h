@@ -9,10 +9,10 @@ class InstructionHalt : public Instruction
 {
     public:
     ~InstructionHalt(){
-        std::cout << "Halt Instruction Destructor\n";
+        // std::cout << "Halt Instruction Destructor\n";
     };
     InstructionHalt(parameters* params):Instruction(params){
-        std::cout << "Halt Instruction Constructor\n";
+        // std::cout << "Halt Instruction Constructor\n";
     };
 
     void Execute(int &PC)

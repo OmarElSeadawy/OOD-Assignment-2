@@ -2,11 +2,10 @@
 
 int main()
 {
-    Processor P(7);
+    std::cout << "Starting Processor\n";
+    Processor P(8);          //Running 8 Programs in parallel
+    std::cout << "Running in Parallel\n";
     P.Run("test");
-
-
-
 
 
 

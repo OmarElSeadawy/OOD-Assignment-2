@@ -9,15 +9,16 @@ class InstructionLE : public Instruction
 {
     public:
     ~InstructionLE(){
-        std::cout << "LE INSTRUCTION Destructor\n";
+        // std::cout << "LE INSTRUCTION Destructor\n";
     };
     InstructionLE(parameters* params):Instruction(params){
-        std::cout << "LE Instruction Constructor\n";
+        // std::cout << "LE Instruction Constructor\n";
     };
 
     void Execute(int &PC)
     {
-        std::cout << "Executing LE COMMAND\n";
+        int t = LockMutexes(p);
+        // std::cout << "Executing LE COMMAND\n";
 		int operand1, operand2;
 		if (p->isp1addr)
 			operand1 = *p->p1.param1addr;
@@ -34,6 +35,8 @@ class InstructionLE : public Instruction
         else
             *p->p3.param3addr = 0;
 		PC++;
+        
+        UnlockMutexes(p,t);
     }
     
 };

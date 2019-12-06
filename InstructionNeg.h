@@ -9,15 +9,16 @@ class InstructionNeg : public Instruction
 {
     public:
     ~InstructionNeg(){
-        std::cout << "Neg Instruction Destructor\n";
+        // std::cout << "Neg Instruction Destructor\n";
     };
     InstructionNeg(parameters* params):Instruction(params){
-        std::cout << "Neg Instruction Constructor\n";
+        // std::cout << "Neg Instruction Constructor\n";
     };
 
     void Execute(int &PC)
     {
-        std::cout << "Executing Neg COMMAND\n";
+        int t = LockMutexes2(p);
+        // std::cout << "Executing Neg COMMAND\n";
 		int operand1;
 		if (p->isp1addr)
 			operand1 = *p->p1.param1addr;
@@ -26,6 +27,8 @@ class InstructionNeg : public Instruction
 
 		*p->p2.param2addr = operand1 * -1;
 		PC++;
+
+        UnlockMutexes(p,t);
     }
     
 };
